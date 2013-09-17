@@ -2,7 +2,8 @@
 /**
  * Manage pool of people and scheduled tasks for them.
  * 
- * @property integer $interval_time The pool interval in seconds
+ * @property integer $interval      The pool interval (day, week, month)
+ * @property integer $interval_time The pool interval time (weekday or month name)
  */
 class Pool extends ElggObject {
 	/**
@@ -67,8 +68,8 @@ class Pool extends ElggObject {
 	 * Adds the user to the pool, assigns her as the next in turn.
 	 * All other turns are postponed.
 	 * 
-	 * @param int     $user_guid
-	 * return boolean
+	 * @param int $user_guid
+	 * @return boolean
 	 */
 	public function join ($user_guid = null) {
 		if ($user_guid == null) {
@@ -106,7 +107,7 @@ class Pool extends ElggObject {
 	/**
 	 * Leave the pool
 	 * 
-	 * @param  int     $user_guid
+	 * @param int $user_guid
 	 * @return boolean
 	 */
 	public function leave ($user_guid = null) {
@@ -153,7 +154,7 @@ class Pool extends ElggObject {
 	/**
 	 * Check if user is member of the pool.
 	 * 
-	 * @param  int     $user_guid
+	 * @param int $user_guid
 	 * @return boolean
 	 */
 	public function isMember($user_guid = null) {
@@ -183,7 +184,7 @@ class Pool extends ElggObject {
 	/**
 	 * Get pool turns that are scheduled at the given time and after it.
 	 * 
-	 * @param  string $time Unix timestamp
+	 * @param string $time Unix timestamp
 	 * @return array
 	 */
 	public function getTurnsNowAndAfter($time = null) {
@@ -193,45 +194,17 @@ class Pool extends ElggObject {
 
 		return elgg_get_annotations(array(
 			'guid' => $this->guid,
-			'metadata_names' => null,
-			'metadata_values' => null,
+			'metastring_names' => 'pool_turn',
 			'wheres' => array("v.string >= $time"),
-			'order_by' => 'v.string asc',
 			'limit' => false,
+			'order_by' => 'v.string asc',
 		));
-	}
-
-	/**
-	 * Get the next user in turn after the given time (default: now).
-	 * 
-	 * @param  int              $time Unix timestamp
-	 * @return boolean|ElggUser       ElggUser or false
-	 */
-	public function getNextUserInTurn($time = null) {
-		if ($time == null) {
-			$time = time();
-		}
-
-		$turns = elgg_get_annotations(array(
-			'guid' => $this->guid,
-			'annotation_name_value_pairs' => array(
-				'name' => 'pool_turn',
-				'value' => $time,
-				'operator' => '>',
-			),
-		));
-
-		if (isset($turns[0])) {
-			return get_entity($turns[0]->getOwnerGUID());
-		} else {
-			return false;
-		}
 	}
 
 	/**
 	 * Get user's next turn
 	 * 
-	 * @param  int                    $user_guid
+	 * @param int $user_guid
 	 * @return ElggAnnotation|boolean 
 	 */
 	public function getUsersNextTurn($user_guid = null) {
@@ -241,12 +214,9 @@ class Pool extends ElggObject {
 
 		$result = elgg_get_annotations(array(
 			'annotation_owner_guid' => $user_guid,
-			'annotation_name_value_pairs' => array(
-				'name' => 'pool_turn',
-				'value' => time(),
-				'operator' => '>',
-			),
+			'metastring_names' => 'pool_turn',
 			'guid' => $this->guid,
+			'limit' => 1,
 		));
 
 		if (isset($result[0])) {
@@ -257,14 +227,15 @@ class Pool extends ElggObject {
 	}
 
 	/**
-	 * Get the first user in the queue.
+	 * Get the first turn in the queue.
 	 * 
 	 * @return ElggUser
 	 */
-	private function getFirstTurn() {
+	public function getFirstTurn() {
 		$turn = elgg_get_annotations(array(
-			'guids' => $this->guid,
-			'annotation_names' => 'pool_turn',
+			'guid' => $this->guid,
+			'metastring_names' => 'pool_turn',
+			'order_by' => 'v.string asc',
 			'limit' => 1,
 		));
 
