@@ -28,9 +28,9 @@ $lang = array(
 	'pool:leave:error' => 'Leaving the list failed',
 
 	// Admin panel
-	'admin:pool' => 'Pools',
-	'admin:pool:list' => 'Administration',
-	'admin:pool:save' => 'Administration',
+	'admin:pool' => 'Administer',
+	'admin:pool:list' => 'Pools',
+	'admin:pool:save' => 'Create a new pool',
 	'pool:interval' => 'Interval',
 	'pool:interval:time' => 'Time',
 

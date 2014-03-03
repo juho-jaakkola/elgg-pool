@@ -38,6 +38,16 @@ function pool_init () {
 	// Rearrange lists when user is banned or deleted
 	elgg_register_event_handler('delete', 'user', 'pool_remove_user');
 	elgg_register_event_handler('ban', 'user', 'pool_remove_user');
+
+	// This is used instead of elgg_register_admin_menu_item() because we
+	// don't want to create a separate menu section
+	elgg_register_menu_item('page', array(
+		'name' => 'pools',
+		'href' => 'admin/pool/list',
+		'text' => elgg_echo('admin:pool:list'),
+		'context' => 'admin',
+		'section' => 'administer'
+	));
 }
 
 /**

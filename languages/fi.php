@@ -28,9 +28,9 @@ $lang = array(
 	'pool:leave:error' => 'Listalta poistuminen epäonnistui',
 
 	// Admin panel
-	'admin:pool' => 'Vuorolistat',
-	'admin:pool:list' => 'Ylläpito',
-	'admin:pool:save' => 'Ylläpito',
+	'admin:pool' => 'Ylläpito',
+	'admin:pool:list' => 'Vuorolistat',
+	'admin:pool:save' => 'Luo uusi vuorolista',
 	'pool:interval' => 'Toistuvuus',
 	'pool:interval:time' => 'Ajankohta',
 
