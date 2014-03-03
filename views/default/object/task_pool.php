@@ -2,10 +2,11 @@
 
 $entity = elgg_extract('entity', $vars);
 
-$turn = $entity->getFirstTurn();
-$user = $turn->getOwnerEntity();
+// TODO Add method countUsers()?
+if (elgg_in_context('widgets') && $entity->getMembers(0, true)) {
+	$turn = $entity->getFirstTurn();
+	$user = $turn->getOwnerEntity();
 
-if (elgg_in_context('widgets')) {
 	$image = elgg_view_entity_icon($user, 'small');
 
 	$user_link = elgg_view('output/url', array(
