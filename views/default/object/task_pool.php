@@ -2,8 +2,7 @@
 
 $entity = elgg_extract('entity', $vars);
 
-// TODO Add method countUsers()?
-if (elgg_in_context('widgets') && $entity->getMembers(0, true)) {
+if (elgg_in_context('widgets') && $entity->countMembers()) {
 	$turn = $entity->getFirstTurn();
 	$user = $turn->getOwnerEntity();
 

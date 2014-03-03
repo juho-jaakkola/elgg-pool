@@ -9,7 +9,7 @@ if (!elgg_instanceof($pool, 'object', 'task_pool')) {
 	forward(REFERER);
 }
 
-$count = $pool->getMembers(false, true);
+$count = $pool->countMembers();
 
 $member_count = elgg_echo('pool:members:count', array($count));
 $title = "{$pool->title} $member_count";

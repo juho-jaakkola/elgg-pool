@@ -99,14 +99,16 @@ function pool_entity_menu ($hook, $type, $return, $params) {
 				'priority' => 200,
 			));
 
-			$return[] = ElggMenuItem::factory(array(
-				'name' => 'shift',
-				'text' => elgg_echo('pool:shift'),
-				'href' => "action/pool/shift?guid={$entity->guid}",
-				'priority' => 150,
-				'is_action' => true,
-				'confirm' => elgg_echo('question:areyousure'),
-			));
+			if ($entity->countMembers()) {
+				$return[] = ElggMenuItem::factory(array(
+					'name' => 'shift',
+					'text' => elgg_echo('pool:shift'),
+					'href' => "action/pool/shift?guid={$entity->guid}",
+					'priority' => 150,
+					'is_action' => true,
+					'confirm' => elgg_echo('question:areyousure'),
+				));
+			}
 		}
 	}
 

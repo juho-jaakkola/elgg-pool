@@ -168,22 +168,35 @@ class Pool extends ElggObject {
 	/**
 	 * Get all pool members
 	 * 
+	 * @param array $options
 	 * @return ElggUser[]
 	 */
-	public function getMembers($limit = 10, $count = false) {
-		return elgg_get_entities_from_relationship(array(
+	public function getMembers($options = array()) {
+		$defaults = array(
 			'type' => 'user',
 			'relationship' => 'member',
 			'relationship_guid' => $this->guid,
 			'inverse_relationship' => true,
-			'count' => $count,
-			'limit' => $limit,
-		));
+			'limit' => 10,
+		);
+
+		$options = array_merge($defaults, $options);
+
+		return elgg_get_entities_from_relationship($options);
+	}
+
+	/**
+	 * Count the amount of members
+	 * 
+	 * @return int
+	 */
+	public function countMembers() {
+		return $this->getMembers(array('count' => true));
 	}
 
 	/**
 	 * Get pool turns that are scheduled at the given time and after it.
-	 * 
+	 *
 	 * @param string $time Unix timestamp
 	 * @return array
 	 */
