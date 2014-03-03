@@ -29,14 +29,14 @@ if (elgg_in_context('widgets') && $entity->getMembers(0, true)) {
 
 	if ($next_interval > $turn->value) {
 		// Display the turn of this day/week/month
-		$content = elgg_echo("pool:current:$entity->interval", array($user_link));
+		$content = elgg_echo("pool:current:$entity->interval");
 	} else {
 		// Display the turn of next day/week/month
-		$content = elgg_echo("pool:next:$entity->interval", array($user_link));
+		$content = elgg_echo("pool:next:$entity->interval");
 	}
 
 	$params = array(
-		'content' => $content,
+		'content' => $content . "<p>$user_link</p>",
 		'title' => false,
 	);
 } else {

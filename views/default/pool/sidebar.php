@@ -14,7 +14,7 @@ $pools = elgg_get_entities_from_relationship(array(
 foreach ($pools as $pool) {
 	$link = elgg_view('output/url', array(
 		'href' => "pool/view/$pool->guid",
-		'text' => elgg_echo('all'), 
+		'text' => elgg_echo('link:view:all'),
 	));
 
 	$pool_view = elgg_view_entity($pool);

@@ -9,13 +9,13 @@ $lang = array(
 	'pool:shift' => 'Shift',
 	'pool:remove' => 'Remove',
 
-	'pool:current:daily' => "Today's turn: %s",
-	'pool:current:weekly' => "This week's turn: %s",
-	'pool:current:monthly' => "This month's turn: %s",
+	'pool:current:daily' => "Today's turn:",
+	'pool:current:weekly' => "This week's turn:",
+	'pool:current:monthly' => "This month's turn:",
 
-	'pool:next:daily' => "Tomorrow's turn: %s",
-	'pool:next:weekly' => "Next week's turn: %s",
-	'pool:next:monthly' => "Next month's turn: %s",
+	'pool:next:daily' => "Tomorrow's turn:",
+	'pool:next:weekly' => "Next week's turn:",
+	'pool:next:monthly' => "Next month's turn:",
 
 	'pool:daily' => 'daily',
 	'pool:weekly' => 'weekly',

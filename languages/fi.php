@@ -9,13 +9,13 @@ $lang = array(
 	'pool:shift' => 'Siirrä',
 	'pool:remove' => 'Poista listalta',
 
-	'pool:current:daily' => 'Tänään vuorossa: %s',
-	'pool:current:weekly' => 'Tällä viikolla vuorossa: %s',
-	'pool:current:monthly' => 'Tässä kuussa vuorossa: %s',
+	'pool:current:daily' => 'Tänään vuorossa:',
+	'pool:current:weekly' => 'Tällä viikolla vuorossa:',
+	'pool:current:monthly' => 'Tässä kuussa vuorossa:',
 
-	'pool:next:daily' => 'Huomenna vuorossa: %s',
-	'pool:next:weekly' => 'Ensi viikolla vuorossa: %s',
-	'pool:next:monthly' => 'Ensi kuussa vuorossa: %s',
+	'pool:next:daily' => 'Huomenna vuorossa:',
+	'pool:next:weekly' => 'Ensi viikolla vuorossa:',
+	'pool:next:monthly' => 'Ensi kuussa vuorossa:',
 
 	'pool:daily' => 'päivittäin',
 	'pool:weekly' => 'viikoittain',
