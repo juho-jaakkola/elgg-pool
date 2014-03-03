@@ -16,9 +16,9 @@ $interval_label = elgg_echo('pool:interval');
 $interval_input = elgg_view('input/dropdown', array(
 	'name' => 'interval',
 	'options_values' => array(
-		'daily' => elgg_echo('pool:daily'),
+		//'daily' => elgg_echo('pool:daily'),
 		'weekly' => elgg_echo('pool:weekly'),
-		'monthly' => elgg_echo('pool:monthly'),
+		//'monthly' => elgg_echo('pool:monthly'),
 	),
 	'value' => $vars['interval'],
 ));
