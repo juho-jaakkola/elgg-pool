@@ -1,3 +1,3 @@
 <?php
 
-update_subtype('object', 'Pool');
+update_subtype('object', 'pool');
