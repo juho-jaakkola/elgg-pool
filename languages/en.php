@@ -8,6 +8,7 @@ $lang = array(
 	'pool:members:count' => '(%s members)',
 	'pool:shift' => 'Shift',
 	'pool:remove' => 'Remove',
+	'item:object:task_pool' => 'Task Pools',
 
 	'pool:current:daily' => "Today's turn:",
 	'pool:current:weekly' => "This week's turn:",

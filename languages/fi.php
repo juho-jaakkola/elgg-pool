@@ -8,6 +8,7 @@ $lang = array(
 	'pool:members:count' => '(%s jäsentä)',
 	'pool:shift' => 'Siirrä',
 	'pool:remove' => 'Poista listalta',
+	'item:object:task_pool' => 'Vuorolistat',
 
 	'pool:current:daily' => 'Tänään vuorossa:',
 	'pool:current:weekly' => 'Tällä viikolla vuorossa:',
