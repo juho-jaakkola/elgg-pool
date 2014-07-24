@@ -18,9 +18,7 @@ function pool_init () {
 	}
 
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'pool_entity_menu');
-
-	// override the default url to view a blog object
-	elgg_register_entity_url_handler('object', 'task_pool', 'pool_url_handler');
+	elgg_register_plugin_hook_handler('entity:url', 'object', 'pool_url_handler');
 
 	elgg_register_page_handler('pool', 'pool_page_handler');
 
@@ -52,11 +50,11 @@ function pool_init () {
 
 /**
  * Set up entity menu for pool objects
- * 
+ *
  * @param string $hook 'register'
  * @param string $type 'menu:entity'
  * @param ElggMenuItem[] $return
- * @param array $params 
+ * @param array $params
  * @return ElggMenuItem[]
  */
 function pool_entity_menu ($hook, $type, $return, $params) {
@@ -127,7 +125,7 @@ function pool_prepare_form_vars($entity = null) {
 		'title' => null,
 		'description' => null,
 		'interval' => null,
-		'interval_time' => null, 
+		'interval_time' => null,
 		'access_id' => null,
 		'owner_guid' => null,
 		'container_guid' => null,
@@ -152,20 +150,20 @@ function pool_prepare_form_vars($entity = null) {
 }
 
 /**
- * Format and return the URL for task pool.
+ * Format and return the URL for a task pool.
  *
- * @param  ElggObject $entity Pool
+ * @param string $hook
+ * @param string $type
+ * @param string $url
+ * @param array  $params
  * @return string URL of pool.
  */
-function pool_url_handler($entity) {
-	if (!$entity->getOwnerEntity()) {
-		// default to a standard view if no owner.
-		return FALSE;
+function pool_url_handler($hook, $type, $url, $params) {
+	$entity = $params['entity'];
+	if ($entity instanceof Pool) {
+		$friendly_title = elgg_get_friendly_title($entity->title);
+		return "pool/view/{$entity->guid}/$friendly_title";
 	}
-
-	$friendly_title = elgg_get_friendly_title($entity->title);
-
-	return "pool/view/{$entity->guid}/$friendly_title";
 }
 
 /**
@@ -201,7 +199,7 @@ function pool_page_handler($page) {
 
 /**
  * Assing new turns for users and send notifications.
- * 
+ *
  * @param string $hook
  * @param string $period
  * @param array  $return
@@ -229,7 +227,7 @@ function pool_assign_new_turn_cron($hook, $period, $return, $params) {
 
 /**
  * Remove user from pools when s/he is deleted or banned.
- * 
+ *
  * @param string $event
  * @param string $type
  * @param array $params
