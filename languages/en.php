@@ -1,6 +1,6 @@
 <?php
 
-$lang = array(
+return array(
 	'pool' => 'Pool',
 	'pool:all' => 'Pools',
 	'pool:join' => 'Join',
@@ -45,5 +45,3 @@ $lang = array(
 	'pool:remove:success' => 'User was successfully removed from the pool',
 	'pool:error:cannot_remove' => 'Cannot remove user from the pool',
 );
-
-add_translation('en', $lang);

@@ -1,6 +1,6 @@
 <?php
 
-$lang = array(
+return array(
 	'pool' => 'Vuorot',
 	'pool:all' => 'Vuorolistat',
 	'pool:join' => 'Liity',
@@ -45,5 +45,3 @@ $lang = array(
 	'pool:remove:success' => 'Käyttäjä poistettu listalta',
 	'pool:error:cannot_remove' => 'Käyttäjän poistaminen listalta epäonnistui',
 );
-
-add_translation('fi', $lang);
