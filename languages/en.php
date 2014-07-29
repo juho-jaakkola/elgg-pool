@@ -22,6 +22,23 @@ return array(
 	'pool:weekly' => 'weekly',
 	'pool:monthly' => 'monthly',
 
+	// Notifications
+	'notifier:notify:daily:subject' => 'Your turn tomorrow: %s',
+	'notifier:notify:weekly:subject' => 'Your turn next week: %s',
+	'notifier:notify:monthly:subject' => 'Your turn next month: %s',
+	'notifier:notify:daily:body' => 'Tomorrow it is your turn in the pool "%s".
+
+%s
+',
+	'notifier:notify:weekly:body' => 'Next week it is your turn in the pool "%s"
+
+%s
+',
+	'notifier:notify:monthly:body' => 'Next month it is your turn in the pool "%s"
+
+%s
+',
+
 	// Messages
 	'pool:join:success' => 'You have joined the pool',
 	'pool:join:error' => 'Joining the list failed',

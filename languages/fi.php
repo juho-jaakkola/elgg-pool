@@ -22,6 +22,23 @@ return array(
 	'pool:weekly' => 'viikoittain',
 	'pool:monthly' => 'kuukausittain',
 
+	// Notifications
+	'notifier:notify:daily:subject' => 'Vuoro huomenna: %s',
+	'notifier:notify:weekly:subject' => 'Vuoro ensi viikolla: %s',
+	'notifier:notify:monthly:subject' => 'Vuoro ensi kuussa: %s',
+	'notifier:notify:daily:body' => 'Huomenna on sinun vuorosi listassa "%s".
+
+%s
+',
+	'notifier:notify:weekly:body' => 'Ensi viikolla on sinun vuorosi listassa "%s"
+
+%s
+',
+	'notifier:notify:monthly:body' => 'Ensi kuussa on sinun vuorosi listassa "%s"
+
+%s
+',
+
 	// Messages
 	'pool:join:success' => 'Liityit listaan',
 	'pool:join:error' => 'Liittyminen epäonnistui',

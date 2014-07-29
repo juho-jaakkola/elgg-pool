@@ -219,7 +219,23 @@ function pool_assign_new_turn_cron($hook, $period, $return, $params) {
 	));
 
 	foreach ($batch as $pool) {
+		// Move current user to the end, and the next user in turn to the beginning
 		$pool->shift();
+
+		// Get the details and notify the next user in turn
+		$turn = $pool->getFirstTurn();
+		$user = $turn->getOwnerEntity();
+		$site = elgg_get_site_entity()->guid;
+
+		$title = elgg_echo("notifier:notify:{$pool->interval}:subject", array($pool->title));
+		$message = elgg_echo("notifier:notify:{$pool->interval}:body", array($pool->title, $pool->getURL()));
+
+		$params = array(
+			'object' => $pool,
+			'action' => 'shift',
+		);
+
+		notify_user($user->guid, $site->guid, $title, $message, $params);
 	}
 
 	elgg_set_ignore_access($ia);
