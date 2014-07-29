@@ -23,6 +23,7 @@ if (elgg_in_context('widgets') && $entity->countMembers()) {
 			$next_interval = strtotime("next monday");
 			break;
 		case 'monthly':
+		default:
 			$next_interval = strtotime("next month");
 	}
 

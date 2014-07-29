@@ -244,9 +244,9 @@ function pool_assign_new_turn_cron($hook, $period, $return, $params) {
 /**
  * Remove user from pools when s/he is deleted or banned.
  *
- * @param string $event
- * @param string $type
- * @param array $params
+ * @param string     $event
+ * @param string     $type
+ * @param ElggEntity $user
  */
 function pool_remove_user ($event, $type, $user) {
 	if (!elgg_instanceof($user, 'user')) {
