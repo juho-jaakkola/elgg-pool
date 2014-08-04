@@ -58,7 +58,8 @@ function pool_init () {
  * @return ElggMenuItem[]
  */
 function pool_entity_menu ($hook, $type, $return, $params) {
-	if ($params['handler'] != 'task_pool') {
+	$handler = elgg_extract('handler', $params, false);
+	if ($handler != 'task_pool') {
 		return $return;
 	}
 
