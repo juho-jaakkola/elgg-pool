@@ -28,6 +28,7 @@ elgg_register_menu_item('title', array(
 	'text' => $text,
 	'link_class' => 'elgg-button elgg-button-action',
 	'is_action' => true,
+	'id' => $guid,
 ));
 
 $metadata = elgg_view_menu('entity', array(

@@ -2,8 +2,13 @@
 
 $entity = elgg_extract('entity', $vars);
 
+if (elgg_is_admin_logged_in()) {
+	elgg_require_js('pool/reorder');
+}
+
 $turns = $entity->getTurnsNowAndAfter();
 
+$items = '';
 foreach ($turns as $turn) {
 	$date = date('j.n.Y', $turn->value);
 	$name = $turn->getOwnerEntity()->name;
@@ -29,5 +34,11 @@ foreach ($turns as $turn) {
 		'title' => $date,
 	));
 
-	echo elgg_view_image_block($image, $body);
+	$block = elgg_view_image_block($image, $body, array(
+		'id' => $user->guid
+	));
+
+	$items .= "<li>$block</li>";
 }
+
+echo "<ul id=\"elgg-pool-users\">$items</ul>";

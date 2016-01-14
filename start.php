@@ -12,6 +12,7 @@ function pool_init () {
 	elgg_register_action('pool/toggle_membership', $actions_path . 'toggle_membership.php');
 	elgg_register_action('pool/shift', $actions_path . 'shift.php', 'admin');
 	elgg_register_action('pool/remove', $actions_path . 'remove.php', 'admin');
+	elgg_register_action('pool/reorder', $actions_path . 'reorder.php', 'admin');
 
 	if (elgg_in_context('activity')) {
 		elgg_extend_view('page/elements/sidebar', 'pool/sidebar');
