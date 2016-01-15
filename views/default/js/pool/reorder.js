@@ -5,7 +5,6 @@
 define(function(require) {
 	var elgg = require('elgg');
 	var $ = require('jquery');
-	require('jquery-ui');
 
 	var guid = $('.elgg-button-action').attr('id');
 
