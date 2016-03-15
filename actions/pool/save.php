@@ -18,12 +18,14 @@ $title = get_input('title');
 $description = get_input('description');
 $interval = get_input('interval');
 $interval_time = get_input('interval_time');
+$time = get_input('time');
 
 $entity->access_id = ACCESS_PUBLIC;
 $entity->title = $title;
 $entity->description = $description;
 $entity->interval = $interval;
 $entity->interval_time = $interval_time;
+$entity->time = $time;
 
 if ($entity->save()) {
 	system_message(elgg_echo('pool:save:success'));

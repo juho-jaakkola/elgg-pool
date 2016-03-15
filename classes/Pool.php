@@ -1,7 +1,7 @@
 <?php
 /**
  * Manage pool of people and scheduled tasks for them.
- * 
+ *
  * @property integer $interval      The pool interval (day, week, month)
  * @property integer $interval_time The pool interval time (weekday or month name)
  */
@@ -16,8 +16,24 @@ class Pool extends ElggObject {
 	}
 
 	/**
+	 * Get the next turn using the given time as starting point
+	 *
+	 * @param int $start_time Timestamp of the starting point
+	 * @return int $time Timestamp of the next turn
+	 */
+	public function getNextTurnFromTime($start_time) {
+		// Get the next turn using the given time as a starting point
+		$time = strtotime("next {$this->interval_time}", $start_time);
+
+		// Add the time of day as seconds
+		$time += strtotime("1970-01-01 {$this->time}:00 UTC");
+
+		return $time;
+	}
+
+	/**
 	 * Shift the pool one step forward. First person will become last.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public function shift ($force = false) {
@@ -36,7 +52,7 @@ class Pool extends ElggObject {
 		$turns = $this->getTurnsNowAndAfter();
 
 		// Start from the next available time
-		$new_time = strtotime("next {$this->interval_time}", time());
+		$new_time = $this->getNextTurnFromTime(time());
 
 		$ia = elgg_set_ignore_access(true);
 
@@ -50,7 +66,7 @@ class Pool extends ElggObject {
 				}
 
 				// Increase the last assigned time by one interval
-				$new_time = strtotime("next {$this->interval_time}", $new_time);
+				$new_time = $this->getNextTurnFromTime($new_time);
 			}
 		}
 
@@ -64,10 +80,10 @@ class Pool extends ElggObject {
 
 	/**
 	 * Join the pool
-	 * 
+	 *
 	 * Adds the user to the pool, assigns her as the next in turn.
 	 * All other turns are postponed.
-	 * 
+	 *
 	 * @param int $user_guid
 	 * @return boolean
 	 */
@@ -81,7 +97,7 @@ class Pool extends ElggObject {
 		// Postpone existing turns
 		foreach ($turns as $turn) {
 			// Increase each turn by one interval (day, week, month)
-			$new_time = strtotime("next {$this->interval_time}", $turn->value);
+			$new_time = $this->getNextTurnFromTime($turn->value);
 
 			if ($this->annotate('pool_turn', $new_time, $this->access_id, $turn->getOwnerGUID())) {
 				$ia = elgg_set_ignore_access(true);
@@ -94,7 +110,7 @@ class Pool extends ElggObject {
 		}
 
 		// Add new member as the next in turn
-		$time =  strtotime("next {$this->interval_time}");
+		$time = $this->getNextTurnFromTime(time());
 		$result = $this->annotate('pool_turn', $time, $this->access_id, $user_guid);
 
 		if ($result) {
@@ -106,7 +122,7 @@ class Pool extends ElggObject {
 
 	/**
 	 * Leave the pool
-	 * 
+	 *
 	 * @param int $user_guid
 	 * @return boolean
 	 */
@@ -130,7 +146,7 @@ class Pool extends ElggObject {
 				// Advance existing turns
 				foreach ($turns as $turn) {
 					// Decrease each turn by one interval (day, week, month)
-					$new_time = strtotime("previous {$this->interval_time}", $turn->value);
+					$new_time = $this->getNextTurnFromTime($turn->value);
 
 					if ($this->annotate('pool_turn', $new_time, $this->access_id, $turn->getOwnerGUID())) {
 
@@ -153,7 +169,7 @@ class Pool extends ElggObject {
 
 	/**
 	 * Check if user is member of the pool.
-	 * 
+	 *
 	 * @param int $user_guid
 	 * @return boolean
 	 */
@@ -167,7 +183,7 @@ class Pool extends ElggObject {
 
 	/**
 	 * Get all pool members
-	 * 
+	 *
 	 * @param array $options
 	 * @return ElggUser[]
 	 */
@@ -187,7 +203,7 @@ class Pool extends ElggObject {
 
 	/**
 	 * Count the amount of members
-	 * 
+	 *
 	 * @return int
 	 */
 	public function countMembers() {
@@ -216,9 +232,9 @@ class Pool extends ElggObject {
 
 	/**
 	 * Get user's next turn
-	 * 
+	 *
 	 * @param int $user_guid
-	 * @return ElggAnnotation|boolean 
+	 * @return ElggAnnotation|boolean
 	 */
 	public function getUsersNextTurn($user_guid = null) {
 		if ($user_guid == null) {
@@ -241,7 +257,7 @@ class Pool extends ElggObject {
 
 	/**
 	 * Get the first turn in the queue.
-	 * 
+	 *
 	 * @return ElggUser
 	 */
 	public function getFirstTurn() {

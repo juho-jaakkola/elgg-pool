@@ -23,8 +23,8 @@ $interval_input = elgg_view('input/dropdown', array(
 	'value' => $vars['interval'],
 ));
 
-$time_label = elgg_echo('pool:interval:time');
-$time_input = elgg_view('input/dropdown', array(
+$interval_time_label = elgg_echo('pool:interval:time');
+$interval_time_input = elgg_view('input/dropdown', array(
 	'name' => 'interval_time',
 	'options_values' => array(
 		'monday' => elgg_echo('monday'),
@@ -37,6 +37,13 @@ $time_input = elgg_view('input/dropdown', array(
 	),
 	'value' => $vars['interval_time'],
 ));
+
+$time_label = elgg_echo('pool:time');
+$time_input = elgg_view('input/text', array(
+	'name' => 'time',
+	'value' => $vars['time'],
+));
+$time_help = elgg_echo('pool:time:help');
 
 $guid_input = elgg_view('input/hidden', array(
 	'name' => 'guid',
@@ -61,8 +68,13 @@ echo <<<HTML
 		$interval_input
 	</div>
 	<div>
+		<label>$interval_time_label</label>
+		$interval_time_input
+	</div>
+	<div>
 		<label>$time_label</label>
 		$time_input
+		<p class="elgg-text-help">$time_help</p>
 	</div>
 	<div class="">
 		$guid_input

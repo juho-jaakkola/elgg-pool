@@ -8,6 +8,7 @@ return array(
 	'pool:members:count' => '(%s members)',
 	'pool:shift' => 'Shift',
 	'pool:remove' => 'Remove',
+	'pool:list:title' => '%s %s',
 	'item:object:task_pool' => 'Task Pools',
 
 	'pool:current:daily' => "Today's turn:",
@@ -51,6 +52,8 @@ return array(
 	'admin:pool:save' => 'Create a new pool',
 	'pool:interval' => 'Interval',
 	'pool:interval:time' => 'Time',
+	'pool:time' => 'Time',
+	'pool:time:help' => 'Use format HH:MM',
 
 	// Admin messages
 	'pool:save:success' => 'Pool saved',

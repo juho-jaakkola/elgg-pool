@@ -11,6 +11,8 @@ $turns = $entity->getTurnsNowAndAfter();
 $items = '';
 foreach ($turns as $turn) {
 	$date = date('j.n.Y', $turn->value);
+	$time = date('H:i', $turn->value);
+
 	$name = $turn->getOwnerEntity()->name;
 
 	$user = $turn->getOwnerEntity();
@@ -31,7 +33,7 @@ foreach ($turns as $turn) {
 		'entity' => $user,
 		'subtitle' => $user->name,
 		'metadata' => $metadata,
-		'title' => $date,
+		'title' => elgg_echo('pool:list:title', array($date, $time)),
 	));
 
 	$block = elgg_view_image_block($image, $body, array(

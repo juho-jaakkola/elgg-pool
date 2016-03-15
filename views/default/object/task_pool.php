@@ -13,7 +13,6 @@ if (elgg_in_context('widgets') && $entity->countMembers()) {
 		'text' => $user->name,
 	));
 
-	// TODO The intervals needs specific time of day to compare to (e.g. 14:00)
 	switch ($entity->interval) {
 		case 'daily':
 			$next_interval = strtotime("tomorrow");
@@ -26,6 +25,9 @@ if (elgg_in_context('widgets') && $entity->countMembers()) {
 		default:
 			$next_interval = strtotime("next month");
 	}
+
+	// Add specific time of day to compare to (e.g. 14:00)
+	$next_interval += strtotime("1970-01-01 {$this->time}:00 UTC");
 
 	if ($next_interval > $turn->value) {
 		// Display the turn of this day/week/month

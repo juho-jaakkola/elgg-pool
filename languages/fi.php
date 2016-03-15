@@ -8,6 +8,7 @@ return array(
 	'pool:members:count' => '(%s jäsentä)',
 	'pool:shift' => 'Siirrä',
 	'pool:remove' => 'Poista listalta',
+	'pool:list:title' => '%s klo %s',
 	'item:object:task_pool' => 'Vuorolistat',
 
 	'pool:current:daily' => 'Tänään vuorossa:',
@@ -51,6 +52,8 @@ return array(
 	'admin:pool:save' => 'Luo uusi vuorolista',
 	'pool:interval' => 'Toistuvuus',
 	'pool:interval:time' => 'Ajankohta',
+	'pool:time' => 'Kellonaika',
+	'pool:time:help' => 'Syötä muodossa HH:MM',
 
 	// Admin messages
 	'pool:save:success' => 'Tehtävä tallennettu',

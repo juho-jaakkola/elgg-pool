@@ -128,6 +128,7 @@ function pool_prepare_form_vars($entity = null) {
 		'description' => null,
 		'interval' => null,
 		'interval_time' => null,
+		'time' => null,
 		'access_id' => null,
 		'owner_guid' => null,
 		'container_guid' => null,
